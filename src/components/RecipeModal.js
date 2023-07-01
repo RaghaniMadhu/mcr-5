@@ -8,7 +8,7 @@ function RecipeModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [recipe, setRecipe] = useState({
     name: "",
-    cusine: "",
+    cuisine: "",
     ingredients: "",
     instructions: "",
     image: "https://source.unsplash.com/random/?food&29",
@@ -110,7 +110,7 @@ function RecipeModal() {
                   setRecipe((prev) => ({
                     ...prev,
                     ingredients: [
-                      "Random Ingredient 1,Random Ingredient 2,Random Ingredient 3",
+                      "Random Ingredient 1;Random Ingredient 2;Random Ingredient 3",
                     ],
                   }));
                 }
@@ -118,7 +118,7 @@ function RecipeModal() {
                   setRecipe((prev) => ({
                     ...prev,
                     instructions: [
-                      "Random Instructions 1,Random Instructions 2,Random Instructions 3",
+                      "Random Instructions 1;Random Instructions 2;Random Instructions 3",
                     ],
                   }));
                 }
