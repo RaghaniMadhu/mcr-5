@@ -100,6 +100,28 @@ function RecipeModal() {
             <button
               className="cursor-pointer"
               onClick={() => {
+                if (recipe.name === "") {
+                  setRecipe((prev) => ({ ...prev, name: "Random Name" }));
+                }
+                if (recipe.cuisine === "") {
+                  setRecipe((prev) => ({ ...prev, cuisine: "Random Cuisine" }));
+                }
+                if (recipe.ingredients === "") {
+                  setRecipe((prev) => ({
+                    ...prev,
+                    ingredients: [
+                      "Random Ingredient 1,Random Ingredient 2,Random Ingredient 3",
+                    ],
+                  }));
+                }
+                if (recipe.instructions === "") {
+                  setRecipe((prev) => ({
+                    ...prev,
+                    instructions: [
+                      "Random Instructions 1,Random Instructions 2,Random Instructions 3",
+                    ],
+                  }));
+                }
                 addARecipe(recipe);
                 cancelHandler();
               }}
