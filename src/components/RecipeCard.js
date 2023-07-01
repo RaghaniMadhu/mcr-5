@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { RecipesContext } from "../contexts/RecipesContext";
 
 function RecipeCard({ recipeDetails }) {
   const navigate = useNavigate();
+  const { deleteARecipe } = useContext(RecipesContext);
 
   return (
     <div className="recipe-card flex-column gap-point-5">
-      <div>
+      <div style={{ position: "relative" }}>
         <img
-          src={"https://source.unsplash.com/random/?food&" + recipeDetails.id}
+          src={
+            recipeDetails.image === undefined || recipeDetails.image === ""
+              ? "https://source.unsplash.com/random/?food&" + recipeDetails.id
+              : recipeDetails.image
+          }
           alt={recipeDetails.name}
           className="image"
+        />
+        <AiOutlineEdit className="icons icon-1" />
+        <AiOutlineDelete
+          className="icons icon-2 cursor-pointer"
+          onClick={() => {
+            deleteARecipe(recipeDetails._id);
+          }}
         />
       </div>
       <h3 className="margin-block-0">{recipeDetails.name}</h3>

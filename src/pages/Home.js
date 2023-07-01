@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { RecipesContext } from "../contexts/RecipesContext";
 import RecipeCard from "../components/RecipeCard";
+import RecipeModal from "../components/RecipeModal";
 
 function Home() {
   const { recipes } = useContext(RecipesContext);
@@ -35,51 +36,56 @@ function Home() {
 
   return (
     <div className="flex-column">
-      <div className="filters-and-search-div flex-row gap-1">
-        <div className="search-div">
-          <input
-            type="text"
-            placeholder="Search the item you want"
-            onChange={(e) => {
-              setRecipeFilters((prev) => ({
-                ...prev,
-                searchString: e.target.value,
-              }));
-            }}
-          />
+      <div className="flex-row justify-content-space-between">
+        <div className="filters-and-search-div flex-row gap-1">
+          <div className="search-div">
+            <input
+              type="text"
+              placeholder="Search the item you want"
+              onChange={(e) => {
+                setRecipeFilters((prev) => ({
+                  ...prev,
+                  searchString: e.target.value,
+                }));
+              }}
+            />
+          </div>
+          <div className="filters-div flex-row-center gap-point-2">
+            <label>Filters:</label>
+            <label>
+              <input
+                type="radio"
+                name="filters"
+                value="name"
+                checked={recipeFilters.searchBy === "name"}
+                onChange={(e) => onChangeHandler(e)}
+              />
+              Name
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="filters"
+                value="ingredients"
+                checked={recipeFilters.searchBy === "ingredients"}
+                onChange={(e) => onChangeHandler(e)}
+              />
+              Ingredients
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="filters"
+                value="cuisine"
+                checked={recipeFilters.searchBy === "cuisine"}
+                onChange={(e) => onChangeHandler(e)}
+              />
+              Cuisine
+            </label>
+          </div>
         </div>
-        <div className="filters-div flex-row-center gap-point-2">
-          <label>Filters:</label>
-          <label>
-            <input
-              type="radio"
-              name="filters"
-              value="name"
-              checked={recipeFilters.searchBy === "name"}
-              onChange={(e) => onChangeHandler(e)}
-            />
-            Name
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="filters"
-              value="ingredients"
-              checked={recipeFilters.searchBy === "ingredients"}
-              onChange={(e) => onChangeHandler(e)}
-            />
-            Ingredients
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="filters"
-              value="cuisine"
-              checked={recipeFilters.searchBy === "cuisine"}
-              onChange={(e) => onChangeHandler(e)}
-            />
-            Cuisine
-          </label>
+        <div>
+          <RecipeModal />
         </div>
       </div>
       <h1>All Recipes:</h1>

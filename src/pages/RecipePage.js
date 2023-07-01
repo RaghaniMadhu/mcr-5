@@ -13,7 +13,11 @@ function RecipePage() {
       <h1>{ourRecipe.name}</h1>
       <div className="flex-row gap-1  recipe-card-details">
         <img
-          src={"https://source.unsplash.com/random/?food&" + ourRecipe.id}
+          src={
+            ourRecipe.image === undefined || ourRecipe.image === ""
+              ? "https://source.unsplash.com/random/?food&" + ourRecipe.id
+              : ourRecipe.image
+          }
           alt={ourRecipe.name}
           className="recipe-card-image"
         />
